@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="UTF-8"/>
-</head>
+  <head>
+    <meta charset="UTF-8"/>
+    <style>
+      .top-nav {
+        list-style-type: none;
+        display: inline-block;
+        margin-right: 20px;
+      }
 
-<body>
-  <div id="app"></div>
+      .sidebar {
+        float: left;
+        background: #eee;
+        padding: 20px;
+        margin: 0 20px 20px;
+        width: 200px;
+        cursor: pointer;
+      }
 
-  <script src="bundle.js"></script>
-</body>
+      .content {
+        padding: 20px 20px 20px 300px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+
+    <script src="bundle.js"></script>
+  </body>
 
 </html>

@@ -1,3 +1,12 @@
-@import "base/variables";
+.sidebar {
+  float: left;
+  background: #eee;
+  padding: 20px;
+  margin: 0 20px 20px 20px;
+  width: 200px;
+  cursor: pointer;
+}
 
-// Components
+.content {
+  padding: 20px 20px 20px 300px;
+}
