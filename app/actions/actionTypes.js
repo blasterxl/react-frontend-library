@@ -1,1 +1,2 @@
-export const CONSTANT = 'CONSTANT';
+export const LOGIN = 'LOGIN';
+export const LOGOUT = 'LOGOUT';

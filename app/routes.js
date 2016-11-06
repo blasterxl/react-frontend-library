@@ -9,17 +9,26 @@ import AboutPage from './components/AboutPage';
 import LoginPage from './components/LoginPage';
 import NotFountPage from './components/NotFoundPage';
 
+import firebase from './api/firebaseAPI';
+
+const requireAuth = (nextState, replace, next) => {
+  if (!firebase.auth().currentUser) {
+    replace('/login');
+  }
+  next();
+};
+
 export default (
   <div>
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
-      <Route path="books" component={BooksPage}>
+      <Route path="books" component={BooksPage} onEnter={requireAuth}>
         <Route path="category/:category" components={{ content: BooksGenrePage }}>
           <Route path=":item" component={BookDetailsPage} />
         </Route>
       </Route>
       <Route path="about" component={AboutPage} />
-    	<Route path="login" component={LoginPage} />
+      <Route path="login" component={LoginPage} />
     </Route>
     <Route path="*" component={NotFountPage} />
   </div>
