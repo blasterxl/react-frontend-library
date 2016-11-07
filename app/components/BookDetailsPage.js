@@ -1,21 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
-import data from '../data';
 
 class BookDetailsPage extends React.Component {
   render() {
     const { category, item } = this.props.params;
-    const bookItem = data.lookupItem(category, item);
+    const i = this.props.books.findIndex(
+      (book) => book.id === item
+    );
+    const book = this.props.books[i];
 
     return (
       <div>
         <Link to={`books/category/${category}`}>◀︎ Back</Link>
-        <h1>{bookItem.name}</h1>
-        <img src={bookItem.posterUrl} alt="Alt"/>
+        <h1>{book.title}</h1>
+        <img src={book.posterUrl} alt="Alt"/>
       </div>
     );
   }
 }
 
-export default BookDetailsPage;
+function mapStateToProps(state) {
+  return {
+    books: state.page.books
+  };
+}
+
+export default connect(mapStateToProps)(BookDetailsPage);

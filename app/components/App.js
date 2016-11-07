@@ -43,9 +43,9 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-    return {
-        user: state.auth.uid
-    };
+  return {
+    user: state.auth.uid
+  };
 }
 
 function mapDispatchToProps(dispatch) {

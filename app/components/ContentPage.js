@@ -1,6 +1,6 @@
 import React from 'react';
 
-class RightContentPage extends React.Component {
+class ContentPage extends React.Component {
   render() {
   	return (
       <div>
@@ -13,4 +13,4 @@ class RightContentPage extends React.Component {
   }
 }
 
-export default RightContentPage;
+export default ContentPage;

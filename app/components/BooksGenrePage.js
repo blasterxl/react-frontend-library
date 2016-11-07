@@ -1,20 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
-import data from '../data';
 
 class BooksGenrePage extends React.Component {
   render() {
-    const category = data.lookupCategory(this.props.params.category);
+    if (!this.props.books) {
+      return (
+        <h1>Loading...</h1>
+      );
+    }
+
     let template = (
       <div>
         <Link to="/books">◀︎ Back</Link>
-        <h1>{category.name}</h1>
-        <p>{category.description}</p>
+        <h1>{this.props.category}</h1>
+        <p>{this.props.description}</p>
         <ul>
-          {category.items.map((item, index) => (
+          {this.props.books.map((item, index) => (
             <li key={index}>
-              <Link to={`books/category/${category.name}/${item.name}`}>{item.name}</Link>
+              <Link to={`books/category/${this.props.category}/${item.id}`}>{item.title}</Link>
             </li>
           ))}
         </ul>
@@ -29,4 +33,12 @@ class BooksGenrePage extends React.Component {
   }
 }
 
-export default BooksGenrePage;
+function mapStateToProps(state) {
+  return {
+    category: state.page.category,
+    description: state.page.description,
+    books: state.page.books
+  };
+}
+
+export default connect(mapStateToProps)(BooksGenrePage);
