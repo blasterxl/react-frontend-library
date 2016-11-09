@@ -1,32 +1,38 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const envFile = require('node-env-file');
 const autoprefixer = require('autoprefixer');
-const postcssImport = require('postcss-import');
-
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 try {
-  envFile(path.join(__dirname, 'config/' + process.env.NODE_ENV + '.env'));
-} catch (e) {
-
-}
+  envFile(path.join(__dirname, 'config/firebase.env'));
+} catch (e) { }
 
 module.exports = {
+  devtool: 'cheap-module-eval-source-map',
   entry: [
-    'babel-polyfill',
-    './app/app.js'
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    'react-hot-loader/patch',
+    path.resolve(__dirname, './app/app.js')
   ],
+  output: {
+    path: path.resolve(__dirname, 'public'),
+    filename: 'bundle.js'
+  },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false
-      }
+    new HtmlWebpackPlugin({
+      template: 'app/index.ejs',
+      title: 'React Frontend Library',
+      inject: 'true',
+      filename: 'index.html'
     }),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        NODE_ENV: JSON.stringify('development'),
         API_KEY: JSON.stringify(process.env.API_KEY),
         AUTH_DOMAIN: JSON.stringify(process.env.AUTH_DOMAIN),
         DATABASE_URL: JSON.stringify(process.env.DATABASE_URL),
@@ -35,42 +41,18 @@ module.exports = {
       }
     })
   ],
-  output: {
-    path: __dirname,
-    filename: './public/bundle.js'
-  },
-  resolve: {
-    root: __dirname,
-    modulesDirectories: [
-      'node_modules',
-    ],
-    alias: {
-      app : 'app',
-    },
-    extensions: ['', '.jsx', '.js', '.scss']
-  },
   module: {
     loaders: [
-      {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-0']
-        },
-        exclude: /node_modules/
-      }
+      {test: /\.js$/, exclude: /node_modules/, loaders: ['babel']},
+      {test: /\.eot(\?v=\d+.\d+.\d+)?$/, loader: 'file'},
+      {test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url?limit=10000&mimetype=application/font-woff"},
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'},
+      {test: /\.(jpe?g|png|gif)$/i, loader: 'file?name=[name].[ext]'},
+      {test: /\.ico$/, loader: 'file?name=[name].[ext]'},
+      {test: /(\.css|\.scss)$/, loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap']},
+      {test: /\.json$/, loader: "json"}
     ]
   },
-  postcss: (webpack) => {
-    return [
-      autoprefixer({
-        browsers: ['last 2 versions'],
-      }),
-      postcssImport({
-        addDependencyTo: webpack,
-      }),
-    ];
-  },
-  devtool: process.env.NODE_ENV == 'production' ? null : 'cheap-module-eval-source-map',
-  noInfo: true
+  postcss: ()=> [autoprefixer]
 };

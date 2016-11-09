@@ -1,9 +1,9 @@
-import 'babel-polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import { hashHistory } from 'react-router';
+import './styles/app.scss';
 
 import App from './components/App';
 import routes from './routes';

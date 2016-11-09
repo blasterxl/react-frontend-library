@@ -1,12 +1,10 @@
-.sidebar {
-  float: left;
-  background: #eee;
-  padding: 20px;
-  margin: 0 20px 20px 20px;
-  width: 200px;
-  cursor: pointer;
-}
+@import "base/variables";
 
-.content {
-  padding: 20px 20px 20px 300px;
+//Components
+@import "components/sidebar";
+
+.top-nav {
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 20px;
 }
