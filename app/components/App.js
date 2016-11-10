@@ -12,11 +12,11 @@ class App extends React.Component {
   }
 
   onLogout () {
-    this.props.actions.startLogout();
+    this.props.actions.signOutUser();
   }
 
   render() {
-    let isAuthenticated = this.props.user;
+    let isAuthenticated = this.props.isAuth;
     let authLink;
     if (isAuthenticated) {
       authLink = (
@@ -44,7 +44,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    user: state.auth.uid
+    isAuth: state.auth.isAuthenticated
   };
 }
 

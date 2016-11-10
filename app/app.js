@@ -14,15 +14,7 @@ import configureStore from './store/configureStore';
 
 const store = configureStore();
 
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    store.dispatch(actions.login(user));
-    hashHistory.push('/books');
-  } else {
-    store.dispatch(actions.logout());
-    hashHistory.push('/');
-  }
-});
+store.dispatch(actions.verifyAuth());
 
 render(
   <Provider store={store}>
