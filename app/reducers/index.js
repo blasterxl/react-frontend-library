@@ -1,12 +1,20 @@
 import { combineReducers } from 'redux';
 
 import auth from './authReducer';
-import page from './pageReducer';
+import { booksReducer } from './pageReducer';
+import * as types from '../actions/actionTypes';
 
-
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   auth,
-  page
+  books: booksReducer
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === types.LOGOUT_SUCCESS) {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+}
 
 export default rootReducer;

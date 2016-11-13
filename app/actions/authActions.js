@@ -1,4 +1,5 @@
 import * as types from './actionTypes';
+import { loadBooks } from './pageActions';
 import { hashHistory } from 'react-router';
 
 import firebase, { firebaseRef, googleProvider } from '../api/firebaseAPI';
@@ -50,9 +51,9 @@ export const verifyAuth = () => {
           photo: user.photoURL
         };
         dispatch(authUser(currentUser));
+        dispatch(loadBooks());
         hashHistory.replace('/books');
       } else {
-        dispatch(logOutUser());
         hashHistory.replace('/');
       }
     });

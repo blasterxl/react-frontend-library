@@ -2,41 +2,56 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
+import { getFilters } from '../helpers/index';
 
 import * as pageActions from '../actions/pageActions';
 
 class IndexSidebar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onGenreClick = this.onGenreClick.bind(this);
-  }
+  render () {
 
-  onGenreClick (e) {
-    this.props.actions.fetchBooksByGenre(e.target.innerText);
-  }
+/*    function getFilters(key, arr) {
+      return arr.reduce((acc, item) => {
+        if (!acc.includes(item[key])) {
+          return [...acc, item[key]];
+        }
+        return acc;
+      }, []);
+    }
+*/
+    let template;
 
-  render() {
-    const genres = [
-      'Angular',
-      'HTML',
-      'CSS',
-      'JavaScript',
-      'React',
-      'NodeJS'
-    ];
-    return (
-      <div>
-        <h2>Genres</h2>
+    if (this.props.loading) {
+      template = (
+        <div>Loading...</div>
+      );
+    } else {
+      let books = this.props.books;
+      let genresList = getFilters('category', books);
+      template = (
         <ul>
-          {genres.map((category, index) => (
+          {genresList.map((category, index) => (
             <li key={index}>
-              <Link to={`books/category/${category}`} onClick={this.onGenreClick}>{category}</Link>
+              <Link to={`books/category/${category}`}>{category}</Link>
             </li>
           ))}
         </ul>
+      );
+    }
+
+    return (
+      <div>
+        <h2>Genres</h2>
+        {template}
       </div>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    books: state.books.bookItems,
+    loading: state.books.isFetching
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -45,4 +60,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(null, mapDispatchToProps)(IndexSidebar);
+export default connect(mapStateToProps, mapDispatchToProps)(IndexSidebar);

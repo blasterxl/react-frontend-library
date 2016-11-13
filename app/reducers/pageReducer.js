@@ -1,23 +1,28 @@
 import * as types from '../actions/actionTypes';
+import initialState from './initialState';
 
-const initialState = {
-  category: '',
-  description: '',
-  books: []
-};
-
-export default function pageReducer (state = initialState, action) {
+export function booksReducer (state = initialState.books, action) {
   switch (action.type) {
-    case types.ADD_BOOKS:
+    case types.LOAD_BOOKS_REQUEST:
       return {
         ...state,
-        category: action.info.category,
-        description: action.info.description,
-        books: action.books
-      };
-    case types.LOGOUT:
-      return {};
+        isFetching: true
+    };
+    case types.LOAD_BOOKS_SUCCESS:
+      return {
+        ...state,
+        bookItems: action.books,
+        totalCount: action.totalCount,
+        isFetching: false,
+        errorMessage: ''
+    };
+    case types.LOAD_BOOKS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errorMessage: action.errorMessage
+    };
     default:
       return state;
   }
-};
+}

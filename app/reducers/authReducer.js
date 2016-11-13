@@ -1,13 +1,7 @@
 import * as types from '../actions/actionTypes';
+import initialState from './initialState';
 
-const initialState = {
-  currentUser: {},
-  isAuthenticated: false,
-  isFetching: false,
-  errorMessage: ''
-};
-
-export default function authReducer (state = initialState, action) {
+export default function authReducer (state = initialState.auth, action) {
   switch (action.type) {
     case types.LOGIN_REQUEST:
       return {
@@ -19,7 +13,8 @@ export default function authReducer (state = initialState, action) {
         ...state,
         currentUser: action.user,
         isAuthenticated: true,
-        isFetching: false
+        isFetching: false,
+        errorMessage: ''
     };
     case types.LOGIN_FAILURE:
       return {
