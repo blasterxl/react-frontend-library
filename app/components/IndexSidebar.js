@@ -9,15 +9,6 @@ import * as pageActions from '../actions/pageActions';
 class IndexSidebar extends React.Component {
   render () {
 
-/*    function getFilters(key, arr) {
-      return arr.reduce((acc, item) => {
-        if (!acc.includes(item[key])) {
-          return [...acc, item[key]];
-        }
-        return acc;
-      }, []);
-    }
-*/
     let template;
 
     if (this.props.loading) {

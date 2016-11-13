@@ -24,7 +24,7 @@ export default (
       <IndexRoute component={HomePage} />
       <Route path="books" component={BooksPage} onEnter={requireAuth}>
         <Route path="category/:category" components={{ content: BooksGenrePage }}>
-          <Route path=":item" component={BookDetailsPage} />
+          <Route path=":id" component={BookDetailsPage} />
         </Route>
       </Route>
       <Route path="about" component={AboutPage} />

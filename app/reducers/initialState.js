@@ -12,6 +12,8 @@ export default {
     errorMessage: ''
   },
   book: {
-
+    bookDetails: {},
+    isFetching: false,
+    errorMessage: ''
   }
 };

@@ -12,16 +12,8 @@ class BooksGenrePage extends React.Component {
 
     let template = (
       <div>
-        <Link to="/books">◀︎ Back</Link>
-        <h1>{this.props.category}</h1>
-        <p>{this.props.description}</p>
-        <ul>
-          {this.props.books.map((item, index) => (
-            <li key={index}>
-              <Link to={`books/category/${this.props.category}/${item.id}`}>{item.title}</Link>
-            </li>
-          ))}
-        </ul>
+        <Link to="/books">◀︎ Back to Books</Link>
+        <div>123</div>
       </div>
     );
 
@@ -35,9 +27,7 @@ class BooksGenrePage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    category: state.page.category,
-    description: state.page.description,
-    books: state.page.books
+    books: state.books
   };
 }
 

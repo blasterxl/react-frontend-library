@@ -4,22 +4,33 @@ import { Link } from 'react-router';
 
 class ContentPage extends React.Component {
   render() {
-    let template;
+    const { bookItems, isFetching } = this.props.books;
 
-    if (this.props.loading) {
+    let template;
+    if (isFetching) {
       template = (
         <div>Loading...</div>
       );
     } else {
-      let books = this.props.books;
       template = (
-        <ul>
-          {books.map((item, index) => (
-            <li key={index}>
-              <Link to={`books/category/${item.category}/${item.id}`}>{item.title}</Link>
-            </li>
+        <div className='book-list-container'>
+          {bookItems.map((item, index) => (
+            <div key={index} className='book-card'>
+              <div key={index} className='book-card-content'>
+                <img src={item.posterUrl} alt=""/>
+                <div className='book-card-info'>
+                  <h3 className="book-card-title"></h3>
+                  <p className="book-card-author">{item.author}</p>
+                  <p className="book-card-date">{`${item.month} ${item.year}`}</p>
+                  <p className="book-card-pages">{item.pages}</p>
+                </div>
+              </div>
+              <div className="book-card-actions">
+                <Link to={`books/category/${item.category}/${item.id}`}>Details</Link>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       );
     }
 
@@ -34,8 +45,7 @@ class ContentPage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    books: state.books.bookItems,
-    loading: state.books.isFetching
+    books: state.books
   };
 }
 

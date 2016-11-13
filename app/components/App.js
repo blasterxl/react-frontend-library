@@ -16,11 +16,15 @@ class App extends React.Component {
   }
 
   render() {
-    let isAuthenticated = this.props.isAuth;
+    const { currentUser, isAuthenticated } = this.props.auth;
     let authLink;
     if (isAuthenticated) {
       authLink = (
-        <button onClick={this.onLogout}>Logout</button>
+        <span className='top-nav-profile'>
+          <img src={currentUser.photo} alt=""/>
+          <span>{currentUser.name}</span>
+          <button onClick={this.onLogout}>Logout</button>
+        </span>
       );
     } else {
       authLink = (
@@ -44,7 +48,7 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    isAuth: state.auth.isAuthenticated
+    auth: state.auth
   };
 }
 

@@ -26,3 +26,28 @@ export function booksReducer (state = initialState.books, action) {
       return state;
   }
 }
+
+export function bookReducer (state = initialState.book, action) {
+  switch (action.type) {
+    case types.LOAD_BOOK_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+    };
+    case types.LOAD_BOOK_SUCCESS:
+      return {
+        ...state,
+        bookDetails: action.book,
+        isFetching: false,
+        errorMessage: ''
+    };
+    case types.LOAD_BOOK_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errorMessage: action.errorMessage
+    };
+    default:
+      return state;
+  }
+}

@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 
 import auth from './authReducer';
-import { booksReducer } from './pageReducer';
+import { booksReducer, bookReducer } from './pageReducer';
 import * as types from '../actions/actionTypes';
 
 const appReducer = combineReducers({
   auth,
-  books: booksReducer
+  books: booksReducer,
+  book: bookReducer
 });
 
 const rootReducer = (state, action) => {

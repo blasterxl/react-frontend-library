@@ -45,3 +45,34 @@ export const loadBooksFailure = (errorMessage) => {
 };
 
 //loadBook actionCreators
+export const loadBook = (id) => {
+  return (dispatch) => {
+    dispatch({type: types.LOAD_BOOK_REQUEST});
+    const booksRef = firebaseRef.child(`books/${id}`);
+
+    return booksRef.once('value')
+      .then((snapshot) => {
+        let book = snapshot.val() || {};
+        dispatch(loadBookSuccess(book));
+      })
+      .catch((error) => {
+        let errorMessage = error.message;
+        console.error('Load book error', errorMessage);
+        dispatch(loadBookFailure(errorMessage));
+      });
+  };
+};
+
+export const loadBookSuccess = (book) => {
+  return {
+    type: types.LOAD_BOOK_SUCCESS,
+    book
+  };
+};
+
+export const loadBookFailure = (errorMessage) => {
+  return {
+    type: types.LOAD_BOOK_FAILURE,
+    errorMessage
+  };
+};
