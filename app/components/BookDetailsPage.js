@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router';
 
-import * as pageActions from '../actions/pageActions';
+import * as contentActions from '../actions/contentActions';
 
 class BookDetailsPage extends React.Component {
   componentDidMount(){
@@ -38,8 +38,7 @@ class BookDetailsPage extends React.Component {
 
     return (
       <div>
-        <h3>Book Details Page</h3>
-        <Link to={`books/category/${this.props.params.category}`}>◀︎ Back to {this.props.params.category}</Link>
+        <Link to='books/'>◀︎ Back to Books</Link>
         {template}
       </div>
     );
@@ -54,7 +53,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(pageActions, dispatch)
+    actions: bindActionCreators(contentActions, dispatch)
   };
 }
 

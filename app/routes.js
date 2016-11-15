@@ -3,7 +3,6 @@ import { Route, IndexRoute } from 'react-router';
 import App from './components/App';
 import HomePage from './components/HomePage';
 import BooksPage from './components/BooksPage';
-import BooksGenrePage from './components/BooksGenrePage';
 import BookDetailsPage from './components/BookDetailsPage';
 import AboutPage from './components/AboutPage';
 import LoginPage from './components/LoginPage';
@@ -23,9 +22,7 @@ export default (
     <Route path="/" component={App}>
       <IndexRoute component={HomePage} />
       <Route path="books" component={BooksPage} onEnter={requireAuth}>
-        <Route path="category/:category" components={{ content: BooksGenrePage }}>
-          <Route path=":id" component={BookDetailsPage} />
-        </Route>
+        <Route path=":id" components={{ content: BookDetailsPage }} />
       </Route>
       <Route path="about" component={AboutPage} />
       <Route path="login" component={LoginPage} />

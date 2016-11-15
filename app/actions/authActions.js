@@ -1,5 +1,5 @@
 import * as types from './actionTypes';
-import { loadBooks } from './pageActions';
+import { loadBooks } from './contentActions';
 import { hashHistory } from 'react-router';
 
 import firebase, { firebaseRef, googleProvider } from '../api/firebaseAPI';

@@ -15,5 +15,11 @@ export default {
     bookDetails: {},
     isFetching: false,
     errorMessage: ''
+  },
+  sorting: {
+    year: 'all',
+    rating: 'all',
+    genre: 'all',
+    sorting: 'featured'
   }
 };

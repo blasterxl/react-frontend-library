@@ -1,13 +1,16 @@
 import { combineReducers } from 'redux';
 
 import auth from './authReducer';
-import { booksReducer, bookReducer } from './pageReducer';
+import { booksReducer, bookReducer } from './contentReducer';
+import sorting from './sortingReducer';
+
 import * as types from '../actions/actionTypes';
 
 const appReducer = combineReducers({
   auth,
   books: booksReducer,
-  book: bookReducer
+  book: bookReducer,
+  sorting
 });
 
 const rootReducer = (state, action) => {

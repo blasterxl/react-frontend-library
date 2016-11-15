@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-import IndexSidebar from './IndexSidebar';
-import ContentPage from './ContentPage';
+import PanelContainer from './PanelContainer';
+import BooksContainer from './BooksContainer';
 
 class BooksPage extends React.Component {
   render() {
     const { content } = this.props;
     return (
       <div>
-        <div className="sidebar">
-          <IndexSidebar />
-        </div>
+        <PanelContainer />
         <div className="content">
-          {content || <ContentPage />}
+          {content || <BooksContainer />}
         </div>
       </div>
     );
