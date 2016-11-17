@@ -3,12 +3,6 @@
 //Components
 @import "components/sidebar";
 
-.top-nav {
-  list-style-type: none;
-  display: inline-block;
-  margin-right: 20px;
-}
-
 .book-card {
   img {
     width: 200px;
@@ -17,9 +11,24 @@
   margin: 10px 5px;
 }
 
-.top-nav-profile {
-  img {
-    width: 32px;
-    border-radius: 50%;
-  }
+.ui.segment {
+  background: url(http://unsplash.s3.amazonaws.com/batch%2010/gipsy_in_the_woods.jpg);
+  min-height: 900px;
+  border: 0;
+  box-shadow: none;
+}
+
+.main-header h1.ui.inverted.header {
+  margin-top: 3em;
+  margin-bottom: 0;
+  font-size: 4.5em;
+  font-weight: normal;
+}
+
+.main-header h2.ui.inverted.header {
+  margin-bottom: 2em;
+}
+
+.ui.secondary.menu a.item.signin:hover {
+  background: none;
 }

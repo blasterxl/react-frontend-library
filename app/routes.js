@@ -6,6 +6,8 @@ import BooksPage from './components/BooksPage';
 import BookDetailsPage from './components/BookDetailsPage';
 import AboutPage from './components/AboutPage';
 import LoginPage from './components/LoginPage';
+import AccountPage from './components/AccountPage';
+import FavouritePage from './components/FavouritePage';
 import NotFountPage from './components/NotFoundPage';
 
 import firebase from './api/firebaseAPI';
@@ -26,6 +28,8 @@ export default (
       </Route>
       <Route path="about" component={AboutPage} />
       <Route path="login" component={LoginPage} />
+      <Route path="profile" component={AccountPage} onEnter={requireAuth} />
+      <Route path="favourite" component={FavouritePage} onEnter={requireAuth} />
     </Route>
     <Route path="*" component={NotFountPage} />
   </div>

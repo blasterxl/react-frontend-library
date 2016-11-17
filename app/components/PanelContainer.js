@@ -14,7 +14,7 @@ class PanelContainer extends React.Component {
       setYearFilter,
       setRatingFilter,
       setGenreFilter,
-      setSortingFilter } = this.props.actions
+      setSortingFilter } = this.props.actions;
     return (
       <div>
         <div className="sidebar">
