@@ -20,6 +20,7 @@ export default {
     year: 'all',
     rating: 'all',
     genre: 'all',
-    sorting: 'featured'
+    sorting: 'featured',
+    searchText: ''
   }
 };

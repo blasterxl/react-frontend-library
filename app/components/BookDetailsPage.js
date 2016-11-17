@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 import * as contentActions from '../actions/contentActions';
 
 class BookDetailsPage extends React.Component {
-  componentDidMount(){
+  componentWillMount(){
    this.props.actions.loadBook(this.props.params.id);
   }
 

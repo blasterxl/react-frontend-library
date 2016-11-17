@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import BooksContent from './BooksContent';
-import { getVisibleBooks } from '../helpers/index';
+import { getVisibleBooks, getBooksBySearchText } from '../helpers/index';
 
 class BooksContainer extends React.Component {
   render () {
@@ -17,10 +17,10 @@ class BooksContainer extends React.Component {
 }
 
 function mapStateToProps (state) {
-  const { year, rating, genre, sorting } = state.sorting;
+  const { year, rating, genre, sorting, searchText } = state.sorting;
   const { bookItems, isFetching } = state.books;
   return {
-    books: getVisibleBooks(year, rating, genre, sorting, bookItems),
+    books: getVisibleBooks(year, rating, genre, searchText, sorting, bookItems),
     isFetching
   };
 }

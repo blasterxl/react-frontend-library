@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 
 import * as authActions from '../actions/authActions';
 
+import SearchTextBar from './SearchTextBar';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -38,6 +40,7 @@ class App extends React.Component {
           <li className="top-nav"><Link to='/'>Home</Link></li>
           <li className="top-nav"><Link to='/books'>Books</Link></li>
           <li className="top-nav"><Link to='/about'>About</Link></li>
+          <li className="top-nav"><SearchTextBar /></li>
           <li className="top-nav">{authLink}</li>
         </ul>
         {this.props.children}

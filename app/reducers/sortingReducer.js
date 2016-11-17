@@ -23,6 +23,11 @@ export default function sortingReducer (state = initialState.sorting, action) {
         ...state,
         sorting: action.sorting
     };
+    case types.SET_SEARCH_TEXT:
+      return {
+        ...state,
+        searchText: action.searchText
+    };
     default:
       return state;
   }

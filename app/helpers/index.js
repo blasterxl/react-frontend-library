@@ -9,13 +9,17 @@ export const getFilters = (key, arr) => {
   }, []);
 }
 
-export const getVisibleBooks = (year, rating, genre, sorting, books) => {
+export const getVisibleBooks = (year, rating, genre, searchText, sorting, books) => {
   return books
     .filter(book => {
+      let authorText = book.author.toLowerCase().split(' ');
+      let titleText = book.title.toLowerCase().split(' ');
+      let obj = authorText.concat(titleText);
       return (
         (year == 'all' || year == book.year) &&
         (rating == 'all' || rating == book.rating) &&
-        (genre == 'all' || genre == book.category)
+        (genre == 'all' || genre == book.category) &&
+        (searchText == '' || obj.toString().indexOf(searchText.toLowerCase()) > -1)
       );
     })
     .sort((a, b) => {

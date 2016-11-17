@@ -18,3 +18,4 @@ export const SET_YEAR = 'SET_YEAR';
 export const SET_RATING = 'SET_RATING';
 export const SET_GENRE = 'SET_GENRE';
 export const SET_SORTING = 'SET_SORTING';
+export const SET_SEARCH_TEXT = 'SET_SEARCH_TEXT';
