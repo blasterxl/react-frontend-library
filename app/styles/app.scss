@@ -11,7 +11,7 @@
   margin: 10px 5px;
 }
 
-.ui.segment {
+.ui.main-header.segment {
   background: url(http://unsplash.s3.amazonaws.com/batch%2010/gipsy_in_the_woods.jpg);
   min-height: 900px;
   border: 0;
@@ -31,4 +31,14 @@
 
 .ui.secondary.menu a.item.signin:hover {
   background: none;
+}
+
+.ui.green.signin-segment.segment {
+  margin-top: 3em;
+  padding-top: 3em;
+  padding-bottom: 5em;
+}
+
+h2.ui.icon.signin-header.header {
+  margin-bottom: 1.5em;
 }
