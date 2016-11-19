@@ -1,7 +1,6 @@
 @import "base/variables";
 
 //Components
-@import "components/sidebar";
 
 .book-card {
   img {
@@ -22,7 +21,6 @@
   margin-top: 3em;
   margin-bottom: 0;
   font-size: 4.5em;
-  font-weight: normal;
 }
 
 .main-header h2.ui.inverted.header {
@@ -41,4 +39,62 @@
 
 h2.ui.icon.signin-header.header {
   margin-bottom: 1.5em;
+}
+
+a.ui.small.inverted.github-link.header {
+  display: block;
+}
+
+h2.ui.about-header.header {
+  margin-top: 2em;
+}
+
+.about-text {
+  font-size: 1.1em;
+}
+
+.ui.bulleted.list.about-list {
+  margin-left: 2.5em;
+  .item {
+    font-size: 1.1em;
+  }
+}
+
+img.ui.avatar.image.category-img {
+  margin-right: 0.7em;
+}
+
+.ui.vertical.index-sidebar.menu {
+  width: 100%;
+}
+
+.ui.cards>.card>.content>.description {
+  clear: none;
+  color: #000;
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+
+.ui.cards>.card>.content>.header:not(.ui) {
+  font-size: 1.5em;
+  margin-bottom: .8em;
+}
+
+.ui.form select {
+  padding: .4em 1em;
+}
+
+.ui.grid>.row>.column.sidebar-column {
+  margin-top:18px;
+}
+
+.ui.grid>.row>.column.content-column {
+  margin-top: 5px;
+}
+
+
+h3.ui.header.category-header {
+  margin-top: 5px;
+  margin-bottom: 25px;
+  font-size: 1.85em;
 }

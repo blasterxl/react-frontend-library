@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 
 import * as contentActions from '../actions/contentActions';
 
+import DimmerLoader from './DimmerLoader';
+
 class BookDetailsPage extends React.Component {
   componentWillMount(){
    this.props.actions.loadBook(this.props.params.id);
@@ -16,7 +18,7 @@ class BookDetailsPage extends React.Component {
     let template;
     if (isFetching) {
       template = (
-        <div>Loading...</div>
+        <DimmerLoader active={isFetching} />
       );
     } else {
       template = (

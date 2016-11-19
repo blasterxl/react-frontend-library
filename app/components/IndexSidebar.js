@@ -1,4 +1,5 @@
 import React from 'react';
+import { Menu, Header, Image } from 'semantic-ui-react';
 
 const IndexSidebar = ({isFetching, selectedGenre, genres=[], onGenreChange}) => {
   let template;
@@ -8,27 +9,27 @@ const IndexSidebar = ({isFetching, selectedGenre, genres=[], onGenreChange}) => 
     );
   } else {
     template = (
-      <ul>
-        <li
-          data-genre="all"
-          onClick={e => onGenreChange(e.target.dataset.genre)}>
-          Show all
-        </li>
+      <Menu className='index-sidebar' vertical>
+        <Menu.Item
+         data-genre="all"
+         onClick={e => onGenreChange(e.target.dataset.genre)}>
+         Show all
+        </Menu.Item>
         {genres.map((category, index) => (
-          <li
+          <Menu.Item
             data-genre={category}
             key={index}
             onClick={e => onGenreChange(e.target.dataset.genre)}>
             {category}
-          </li>
+          </Menu.Item>
         ))}
-      </ul>
+      </Menu>
     );
   }
 
   return (
     <div>
-      <h2>Genres</h2>
+      <Header className='category-header' as='h3' icon='tags' content='Category' />
       {template}
     </div>
   );

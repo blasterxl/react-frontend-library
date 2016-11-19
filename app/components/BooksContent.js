@@ -1,32 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { Card } from 'semantic-ui-react';
+
+import BookItem from './BookItem';
+
+import DimmerLoader from './DimmerLoader';
 
 const BooksContent = ({ books, isFetching }) => {
   let template;
   if (isFetching) {
     template = (
-      <div>Loading...</div>
+      <DimmerLoader active={isFetching} />
     );
   } else {
     template = (
-      <div className='book-list-container'>
-      {books.map((item, index) => (
-        <div key={index} className='book-card'>
-          <div key={index} className='book-card-content'>
-            <img src={item.posterUrl} alt=""/>
-            <div className='book-card-info'>
-              <h3 className="book-card-title"></h3>
-              <p className="book-card-author">{item.author}</p>
-              <p className="book-card-date">{`${item.month} ${item.year}`}</p>
-              <p className="book-card-pages">{item.pages}</p>
-            </div>
-          </div>
-          <div className="book-card-actions">
-            <Link to={`books/${item.id}`}>Details</Link>
-          </div>
-        </div>
-      ))}
-      </div>
+      <Card.Group itemsPerRow={2}>
+        {books.map((item, index) => (
+          <BookItem key={index} item={item} />
+        ))}
+      </Card.Group>
     );
   }
 
