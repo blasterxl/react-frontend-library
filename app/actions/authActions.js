@@ -2,14 +2,59 @@ import * as types from './actionTypes';
 import { loadBooks } from './contentActions';
 import { hashHistory } from 'react-router';
 
-import firebase, { firebaseRef, googleProvider } from '../api/firebaseAPI';
+import firebase,
+  { firebaseRef, googleProvider, facebookProvider, githubProvider } from '../api/firebaseAPI';
 
 //signInUser actionCreators
-export const signInUser = () => {
+export const signInUserGoogle = () => {
   return (dispatch) => {
     dispatch({type: types.LOGIN_REQUEST});
 
     return firebase.auth().signInWithPopup(googleProvider)
+      .then((response) => {
+        let user = {
+          uid: response.user.uid,
+          name: response.user.displayName,
+          photo: response.user.photoURL
+        };
+        console.log('Auth success');
+        dispatch(authUser(user));
+      })
+      .catch((error) => {
+        let errorMessage = error.message;
+        console.error('Auth error', errorMessage);
+        dispatch(authError(errorMessage));
+      });
+  };
+};
+
+export const signInUserFacebook = () => {
+  return (dispatch) => {
+    dispatch({type: types.LOGIN_REQUEST});
+
+    return firebase.auth().signInWithPopup(facebookProvider)
+      .then((response) => {
+        let user = {
+          uid: response.user.uid,
+          name: response.user.displayName,
+          photo: response.user.photoURL
+        };
+        console.log('Auth success');
+        dispatch(authUser(user));
+      })
+      .catch((error) => {
+        let errorMessage = error.message;
+        console.error('Auth error', errorMessage);
+        dispatch(authError(errorMessage));
+      });
+  };
+};
+
+export const signInUserGithub = () => {
+  return (dispatch) => {
+    dispatch({type: types.LOGIN_REQUEST});
+
+    return firebase.auth().signInWithPopup(githubProvider)
       .then((response) => {
         let user = {
           uid: response.user.uid,

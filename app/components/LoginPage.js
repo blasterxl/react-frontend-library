@@ -8,13 +8,8 @@ import * as authActions from '../actions/authActions';
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
-    this.onLogin = this.onLogin.bind(this);
     this.renderAuthError = this.renderAuthError.bind(this);
     this.renderAuthSuccess = this.renderAuthSuccess.bind(this);
-  }
-
-  onLogin () {
-    this.props.actions.signInUser();
   }
 
   renderAuthError() {
@@ -41,6 +36,11 @@ class LoginPage extends React.Component {
   }
 
   render() {
+    const {
+      signInUserGoogle,
+      signInUserFacebook,
+      signInUserGithub } = this.props.actions;
+
     return (
       <Container>
         <Grid centered columns={2}>
@@ -55,9 +55,19 @@ class LoginPage extends React.Component {
               </Header>
               {this.renderAuthError()}
               {this.renderAuthSuccess()}
-              <Button onClick={this.onLogin} disabled={this.props.authSuccess} color='google plus'>
-                <Icon name='google plus' /> Google Plus
-              </Button>
+              <Button.Group fluid>
+                <Button onClick={signInUserGoogle} disabled={this.props.authSuccess} color='google plus'>
+                  <Icon name='google plus' /> Google Plus
+                </Button>
+                <Button.Or />
+                <Button onClick={signInUserFacebook} disabled={this.props.authSuccess} color='facebook'>
+                  <Icon name='facebook' /> Facebook
+                </Button>
+                <Button.Or />
+                <Button onClick={signInUserGithub} disabled={this.props.authSuccess} color='grey'>
+                  <Icon name='github' /> Github
+                </Button>
+              </Button.Group>
             </Segment>
           </Grid.Column>
         </Grid>
