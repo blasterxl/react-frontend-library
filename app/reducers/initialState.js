@@ -11,6 +11,11 @@ export default {
     isFetching: false,
     errorMessage: ''
   },
+  favorite: {
+    bookItems: [],
+    totalCount: '',
+    isFetching: false
+  },
   book: {
     bookDetails: {},
     isFetching: false,

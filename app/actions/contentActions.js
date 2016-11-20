@@ -76,3 +76,54 @@ export const loadBookFailure = (errorMessage) => {
     errorMessage
   };
 };
+
+//loadFavoriteBooks actionCreators
+export const loadFavoriteBooks = () => {
+  return (dispatch, getState) => {
+    dispatch({type: types.LOAD_FAVORITE_BOOKS_REQUEST});
+    const userUid = getState().auth.currentUser.uid;
+    let favoriteRef = firebaseRef.child(`users/${userUid}/favorite`);
+
+    return favoriteRef.on('value', snapshot => {
+      let books = snapshot.val() || {};
+      let parsedBooks = [];
+      Object.keys(books).map((bookId) => {
+        parsedBooks.push({
+          id: bookId,
+          ...books[bookId]
+        });
+      });
+      let totalCount = parsedBooks ? parsedBooks.length : 0;
+      dispatch(loadFavoriteBooksSuccess(parsedBooks, totalCount));
+    });
+  };
+};
+
+export const loadFavoriteBooksSuccess = (books, totalCount) => {
+  return {
+    type: types.LOAD_FAVORITE_BOOKS_SUCCESS,
+    books,
+    totalCount
+  };
+};
+
+//favoriteBook and unfavoriteBook actionCreators
+export const favoriteBook = (selectedBook) => {
+  return (dispatch, getState) => {
+    const userUid = getState().auth.currentUser.uid;
+    const bookId = selectedBook.id;
+
+    return firebaseRef.child(`users/${userUid}/favorite`).update({
+      [bookId]: selectedBook
+    });
+  };
+};
+
+export const unfavoriteBook = (selectedBook) => {
+  return (dispatch, getState) => {
+    const userUid = getState().auth.currentUser.uid;
+    const bookId = selectedBook.id;
+
+    return firebaseRef.child(`users/${userUid}/favorite/${bookId}`).remove();
+  };
+};

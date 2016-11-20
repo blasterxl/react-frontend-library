@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
 import auth from './authReducer';
-import { booksReducer, bookReducer } from './contentReducer';
+import { booksReducer, favoriteBooksReducer, bookReducer } from './contentReducer';
 import sorting from './sortingReducer';
 
 import * as types from '../actions/actionTypes';
@@ -9,6 +9,7 @@ import * as types from '../actions/actionTypes';
 const appReducer = combineReducers({
   auth,
   books: booksReducer,
+  favorite: favoriteBooksReducer,
   book: bookReducer,
   sorting
 });

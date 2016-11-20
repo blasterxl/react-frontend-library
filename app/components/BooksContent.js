@@ -6,7 +6,7 @@ import BookItem from './BookItem';
 
 import DimmerLoader from './DimmerLoader';
 
-const BooksContent = ({ books, isFetching }) => {
+const BooksContent = ({isFetching, books, favoriteBook, unfavoriteBook}) => {
   let template;
   if (isFetching) {
     template = (
@@ -16,7 +16,12 @@ const BooksContent = ({ books, isFetching }) => {
     template = (
       <Card.Group itemsPerRow={2}>
         {books.map((item, index) => (
-          <BookItem key={index} item={item} />
+          <BookItem
+            key={index}
+            item={item}
+            isFavorite={false}
+            onFavoriteSelect={favoriteBook}
+            onFavoriteDeselect={unfavoriteBook} />
         ))}
       </Card.Group>
     );

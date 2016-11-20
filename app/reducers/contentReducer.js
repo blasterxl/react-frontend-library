@@ -27,6 +27,25 @@ export function booksReducer (state = initialState.books, action) {
   }
 }
 
+export function favoriteBooksReducer (state = initialState.favorite, action) {
+  switch (action.type) {
+    case types.LOAD_FAVORITE_BOOKS_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+    };
+    case types.LOAD_FAVORITE_BOOKS_SUCCESS:
+      return {
+        ...state,
+        bookItems: action.books,
+        totalCount: action.totalCount,
+        isFetching: false,
+    };
+    default:
+      return state;
+  }
+}
+
 export function bookReducer (state = initialState.book, action) {
   switch (action.type) {
     case types.LOAD_BOOK_REQUEST:

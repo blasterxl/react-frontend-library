@@ -8,13 +8,18 @@ import TopSortingPanel from './TopSortingPanel';
 import { getFilters, getVisibleBooks, getBooksBySearchText } from '../helpers/index';
 
 import * as sortingActions from '../actions/sortingActions';
+import * as contentActions from '../actions/contentActions';
 
 class BooksContainer extends React.Component {
   render () {
     const {
       setYearFilter,
       setRatingFilter,
-      setSortingFilter } = this.props.actions;
+      setSortingFilter } = this.props.sortingActions;
+    const {
+      favoriteBook,
+      unfavoriteBook,
+      loadFavoriteBooks } = this.props.contentActions;
 
     return (
       <Grid>
@@ -36,7 +41,10 @@ class BooksContainer extends React.Component {
           <Grid.Column>
             <BooksContent
               isFetching={this.props.isFetching}
-              books={this.props.books} />
+              books={this.props.books}
+              favoriteBook={favoriteBook}
+              unfavoriteBook={unfavoriteBook}
+              loadFavoriteBooks={loadFavoriteBooks} />
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -62,7 +70,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    actions: bindActionCreators(sortingActions, dispatch)
+    sortingActions: bindActionCreators(sortingActions, dispatch),
+    contentActions: bindActionCreators(contentActions, dispatch)
   };
 }
 

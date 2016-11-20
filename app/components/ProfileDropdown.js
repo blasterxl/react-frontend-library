@@ -13,7 +13,7 @@ const ProfileDropdown = ({user, onSignOut}) => {
   return (
     <Dropdown trigger={trigger} pointing='top left' icon={null}>
       <Dropdown.Menu>
-        <Dropdown.Item as={Link} to='/profile' text='Account' icon='user' />
+        <Dropdown.Item as={Link} to='/profile' text='Account' icon='user' disabled />
         <Dropdown.Item as={Link} to='/favourite' text='Favourite' icon='folder open' />
         <Dropdown.Item
           onClick={() => onSignOut()}
