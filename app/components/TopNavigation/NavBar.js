@@ -7,8 +7,8 @@ import { Input, Menu, Button } from 'semantic-ui-react';
 import SearchTextBar from './SearchTextBar';
 import ProfileDropdown from './ProfileDropdown';
 
-import * as authActions from '../actions/authActions';
-import * as sortingActions from '../actions/sortingActions';
+import * as authActions from '../../actions/authActions';
+import * as sortingActions from '../../actions/sortingActions';
 
 class NavBar extends React.Component {
   render() {

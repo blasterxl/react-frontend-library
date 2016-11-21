@@ -3,8 +3,7 @@ import { Link } from 'react-router';
 import { Card } from 'semantic-ui-react';
 
 import BookItem from './BookItem';
-
-import DimmerLoader from './DimmerLoader';
+import DimmerLoader from '../DimmerLoader';
 
 const BooksContent = ({isFetching, books, favoriteBook, unfavoriteBook}) => {
   let template;

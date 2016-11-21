@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import App from './components/App';
 import HomePage from './components/HomePage';
-import BooksPage from './components/BooksPage';
+import BooksPage from './components/BooksPage/BooksPage';
 import BookDetailsPage from './components/BookDetailsPage';
 import AboutPage from './components/AboutPage';
 import LoginPage from './components/LoginPage';

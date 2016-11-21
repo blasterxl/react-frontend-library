@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import IndexSidebar from './IndexSidebar';
-import { getFilters } from '../helpers/index';
+import { getFilters } from '../../helpers/index';
 
-import * as sortingActions from '../actions/sortingActions';
+import * as sortingActions from '../../actions/sortingActions';
 
 class PanelContainer extends React.Component {
   render () {
@@ -15,7 +15,7 @@ class PanelContainer extends React.Component {
         isFetching={this.props.isFetching}
         selectedGenre={this.props.selectedGenre}
         genres={this.props.genres}
-        onGenreChange={setGenreFilter} 
+        onGenreChange={setGenreFilter}
       />
     );
   }

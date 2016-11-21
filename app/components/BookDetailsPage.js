@@ -41,7 +41,7 @@ class BookDetailsPage extends React.Component {
                 <Item.Image
                   className='details-image'
                   size='medium' floated='left'
-                  src='http://placehold.it/250x330' />
+                  src='https://placehold.it/250x330' />
                 <Item.Content className='details-content' verticalAlign='top'>
                   <Item.Header as='h1'>{bookDetails.title}</Item.Header>
                   <Item.Meta>

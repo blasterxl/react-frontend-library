@@ -5,10 +5,10 @@ import { Grid } from 'semantic-ui-react';
 
 import BooksContent from './BooksContent';
 import TopSortingPanel from './TopSortingPanel';
-import { getFilters, getVisibleBooks, getBooksBySearchText } from '../helpers/index';
+import { getFilters, getVisibleBooks, getBooksBySearchText } from '../../helpers/index';
 
-import * as sortingActions from '../actions/sortingActions';
-import * as contentActions from '../actions/contentActions';
+import * as sortingActions from '../../actions/sortingActions';
+import * as contentActions from '../../actions/contentActions';
 
 class BooksContainer extends React.Component {
   render () {

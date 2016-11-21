@@ -3,7 +3,7 @@ import { Container } from 'semantic-ui-react';
 
 import * as authActions from '../actions/authActions';
 
-import NavBar from './NavBar';
+import NavBar from './TopNavigation/NavBar';
 
 class App extends React.Component {
   render() {

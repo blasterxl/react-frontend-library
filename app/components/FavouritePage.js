@@ -7,11 +7,11 @@ import { Container, Grid, Card } from 'semantic-ui-react';
 import * as contentActions from '../actions/contentActions';
 
 import DimmerLoader from './DimmerLoader';
-import BookItem from './BookItem';
+import BookItem from './BooksPage/BookItem';
 
 class FavouritePage extends React.Component {
   componentWillMount () {
-   this.props.actions.loadFavoriteBooks();
+    this.props.actions.loadFavoriteBooks();
   }
 
   render() {

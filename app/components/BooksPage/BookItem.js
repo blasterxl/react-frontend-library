@@ -25,7 +25,7 @@ class BookItem extends React.Component {
           label={{ as: 'a', corner: 'left', icon: 'remove bookmark', color: 'green'}}
           floated='left'
           size='small'
-          src='http://placehold.it/150x200'
+          src='https://placehold.it/150x200'
           onClick={() => this.unfavoriteBook()} />
       );
     } else {
@@ -34,7 +34,7 @@ class BookItem extends React.Component {
           label={{ as: 'a', corner: 'left', icon: 'remove bookmark'}}
           floated='left'
           size='small'
-          src='http://placehold.it/150x200'
+          src='https://placehold.it/150x200'
           onClick={() => this.favoriteBook()} />
       );
     }
