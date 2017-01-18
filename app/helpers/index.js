@@ -1,7 +1,14 @@
 import moment from 'moment';
+import { denormalize, schema } from 'normalizr';
 
-export const getFilters = (key, arr) => {
-  return arr.reduce((acc, item) => {
+export const getFilters = (key, obj, index) => {
+
+  const booksSchema = new schema.Entity('books');
+  const mySchema = { books: [ booksSchema ] }
+  const entities = { books: obj };
+  const denormalized = denormalize({ books: index }, mySchema, entities);
+
+  return denormalized.books.reduce((acc, item) => {
     if (!acc.includes(item[key])) {
       return [...acc, item[key]];
     }
@@ -9,8 +16,14 @@ export const getFilters = (key, arr) => {
   }, []);
 }
 
-export const getVisibleBooks = (year, rating, genre, searchText, sorting, books) => {
-  return books
+export const getVisibleBooks = (year, rating, genre, searchText, sorting, books, index) => {
+
+  const booksSchema = new schema.Entity('books');
+  const mySchema = { books: [ booksSchema ] }
+  const entities = { books: books };
+  const denormalized = denormalize({ books: index }, mySchema, entities);
+
+  return denormalized.books
     .filter(book => {
       let authorText = book.author.toLowerCase().split(' ');
       let titleText = book.title.toLowerCase().split(' ');

@@ -14,7 +14,7 @@ const ProfileDropdown = ({user, onSignOut}) => {
     <Dropdown trigger={trigger} pointing='top left' icon={null}>
       <Dropdown.Menu>
         <Dropdown.Item as={Link} to='/profile' text='Account' icon='user' disabled />
-        <Dropdown.Item as={Link} to='/favourite' text='Favourite' icon='folder open' />
+        <Dropdown.Item as={Link} to='/favorite' text='Favorite' icon='folder open' />
         <Dropdown.Item
           onClick={() => onSignOut()}
           text='Sign Out' icon='sign out' />

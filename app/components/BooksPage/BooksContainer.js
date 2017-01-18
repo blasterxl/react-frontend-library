@@ -54,16 +54,16 @@ class BooksContainer extends React.Component {
 
 function mapStateToProps (state) {
   const { year, rating, genre, sorting, searchText } = state.sorting;
-  const { bookItems, isFetching } = state.books;
+  const { bookItems, result, isFetching } = state.books;
   return {
-    books: getVisibleBooks(year, rating, genre, searchText, sorting, bookItems),
+    books: getVisibleBooks(year, rating, genre, searchText, sorting, bookItems, result),
     selectedYear: year,
     selectedRating: rating,
     selectedGenre: genre,
     sorting,
-    years: getFilters('year', bookItems).sort((a,b) => a - b),
-    ratings: getFilters('rating', bookItems).sort((a,b) => a - b),
-    genres: getFilters('category', bookItems),
+    years: getFilters('year', bookItems, result).sort((a,b) => a - b),
+    ratings: getFilters('rating', bookItems, result).sort((a,b) => a - b),
+    genres: getFilters('category', bookItems, result),
     isFetching
   };
 }

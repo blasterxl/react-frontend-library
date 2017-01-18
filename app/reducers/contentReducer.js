@@ -11,7 +11,8 @@ export function booksReducer (state = initialState.books, action) {
     case types.LOAD_BOOKS_SUCCESS:
       return {
         ...state,
-        bookItems: action.books,
+        bookItems: action.books.entities.books,
+        result: action.books.result,
         totalCount: action.totalCount,
         isFetching: false,
         errorMessage: ''
@@ -37,7 +38,8 @@ export function favoriteBooksReducer (state = initialState.favorite, action) {
     case types.LOAD_FAVORITE_BOOKS_SUCCESS:
       return {
         ...state,
-        bookItems: action.books,
+        bookItems: action.books.entities.books,
+        result: action.books.result,
         totalCount: action.totalCount,
         isFetching: false,
     };

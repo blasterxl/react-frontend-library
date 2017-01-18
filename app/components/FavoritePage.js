@@ -15,7 +15,7 @@ class FavouritePage extends React.Component {
   }
 
   render() {
-    const { bookItems, isFetching } = this.props.favorite;
+    const { bookItems, result, isFetching } = this.props.favorite;
     const {
       favoriteBook,
       unfavoriteBook } = this.props.actions;
@@ -28,10 +28,10 @@ class FavouritePage extends React.Component {
     } else {
       template = (
         <Card.Group itemsPerRow={3}>
-          {bookItems.map((item, index) => (
+          {result.map(id => (
             <BookItem
-              key={index}
-              item={item}
+              key={id}
+              item={bookItems[id]}
               isFavorite={true}
               onFavoriteSelect={favoriteBook}
               onFavoriteDeselect={unfavoriteBook} />
@@ -67,3 +67,15 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FavouritePage);
+/*
+<Card.Group itemsPerRow={3}>
+  {bookItems.map((item, index) => (
+    <BookItem
+      key={index}
+      item={item}
+      isFavorite={true}
+      onFavoriteSelect={favoriteBook}
+      onFavoriteDeselect={unfavoriteBook} />
+  ))}
+</Card.Group>
+*/

@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 
 import firebase, { firebaseRef } from '../api/firebaseAPI';
+import { normalize, schema } from 'normalizr';
 
 //loadBooks actionCreators
 export const loadBooks = () => {
@@ -18,8 +19,15 @@ export const loadBooks = () => {
             ...books[bookId]
           });
         });
+
+        const booksSchema = new schema.Entity('books');
+        const booksListSchema = new schema.Array(booksSchema);
+        const normalizedBooks = normalize(parsedBooks, booksListSchema);
+
+        console.log(normalizedBooks);
+
         let totalCount = parsedBooks ? parsedBooks.length : 0;
-        dispatch(loadBooksSuccess(parsedBooks, totalCount));
+        dispatch(loadBooksSuccess(normalizedBooks, totalCount));
       })
       .catch((error) => {
         let errorMessage = error.message;
@@ -93,8 +101,15 @@ export const loadFavoriteBooks = () => {
           ...books[bookId]
         });
       });
+
+      const favoriteBooksSchema = new schema.Entity('books');
+      const favoriteBooksListSchema = new schema.Array(favoriteBooksSchema);
+      const normalizedFavoriteBooks = normalize(parsedBooks, favoriteBooksListSchema);
+
+      console.log(normalizedFavoriteBooks);
+
       let totalCount = parsedBooks ? parsedBooks.length : 0;
-      dispatch(loadFavoriteBooksSuccess(parsedBooks, totalCount));
+      dispatch(loadFavoriteBooksSuccess(normalizedFavoriteBooks, totalCount));
     });
   };
 };

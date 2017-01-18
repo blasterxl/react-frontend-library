@@ -23,10 +23,10 @@ class PanelContainer extends React.Component {
 
 function mapStateToProps (state) {
   const { year, rating, genre, sorting } = state.sorting;
-  const { bookItems, isFetching } = state.books;
+  const { bookItems, result, isFetching } = state.books;
   return {
     selectedGenre: genre,
-    genres: getFilters('category', bookItems),
+    genres: getFilters('category', bookItems, result),
     isFetching
   };
 }
