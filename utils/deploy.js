@@ -5,7 +5,7 @@ var path = require('path');
 var colors = require('colors');
 
 var config = {
-  message: 'Publish App'
+  message: new Date()
 };
 
 ghPages.publish(path.join(__dirname, '../', 'public'), config, function(err) {

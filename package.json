@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "firebase": "^3.6.0",
+    "immutable": "^3.8.1",
     "moment": "^2.16.0",
     "node-env-file": "^0.1.8",
     "normalizr": "^3.1.0",

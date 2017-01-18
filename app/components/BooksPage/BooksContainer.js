@@ -54,7 +54,9 @@ class BooksContainer extends React.Component {
 
 function mapStateToProps (state) {
   const { year, rating, genre, sorting, searchText } = state.sorting;
-  const { bookItems, result, isFetching } = state.books;
+  const bookItems = state.books.get('bookItems').toJS();
+  const result = state.books.get('result').toJS();
+  const isFetching = state.books.get('isFetching');
   return {
     books: getVisibleBooks(year, rating, genre, searchText, sorting, bookItems, result),
     selectedYear: year,

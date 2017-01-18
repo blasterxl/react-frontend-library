@@ -14,7 +14,7 @@ class BookDetailsPage extends React.Component {
   }
 
   render() {
-    const { bookDetails, isFetching } = this.props.book;
+    const { bookDetails, isFetching } = this.props;
 
     let template;
     if (isFetching) {
@@ -82,7 +82,8 @@ class BookDetailsPage extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    book: state.book
+    bookDetails: state.book.get('bookDetails').toJS(),
+    isFetching: state.book.get('isFetching')
   };
 }
 

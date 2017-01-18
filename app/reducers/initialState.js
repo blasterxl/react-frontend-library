@@ -1,38 +1,5 @@
-export default {
-  auth: {
-    currentUser: {},
-    isAuthenticated: false,
-    isFetching: false,
-    errorMessage: ''
-  },
-  books: {
-    bookItems: {},
-    result: [],
-    totalCount: '',
-    isFetching: false,
-    errorMessage: ''
-  },
-  favorite: {
-    bookItems: {},
-    result: [],
-    totalCount: '',
-    isFetching: false
-  },
-  book: {
-    bookDetails: {},
-    isFetching: false,
-    errorMessage: ''
-  },
-  sorting: {
-    year: 'all',
-    rating: 'all',
-    genre: 'all',
-    sorting: 'featured',
-    searchText: ''
-  }
-};
+import Immutable from 'immutable';
 
-/*
 export default {
   auth: {
     currentUser: {},
@@ -40,22 +7,30 @@ export default {
     isFetching: false,
     errorMessage: ''
   },
-  books: {
-    bookItems: [],
-    totalCount: '',
-    isFetching: false,
-    errorMessage: ''
-  },
-  favorite: {
-    bookItems: [],
-    totalCount: '',
-    isFetching: false
-  },
-  book: {
-    bookDetails: {},
-    isFetching: false,
-    errorMessage: ''
-  },
+  books: Immutable.Map(
+    {
+      bookItems: Immutable.Map(),
+      result: Immutable.List(),
+      totalCount: '',
+      isFetching: false,
+      errorMessage: ''
+    }
+  ),
+  favorite: Immutable.Map(
+    {
+      bookItems: Immutable.Map(),
+      result: Immutable.List(),
+      totalCount: '',
+      isFetching: false
+    }
+  ),
+  book: Immutable.Map(
+    {
+      bookDetails: Immutable.Map(),
+      isFetching: false,
+      errorMessage: ''
+    }
+  ),
   sorting: {
     year: 'all',
     rating: 'all',
@@ -64,4 +39,3 @@ export default {
     searchText: ''
   }
 };
-*/

@@ -23,7 +23,9 @@ class PanelContainer extends React.Component {
 
 function mapStateToProps (state) {
   const { year, rating, genre, sorting } = state.sorting;
-  const { bookItems, result, isFetching } = state.books;
+  const bookItems = state.books.get('bookItems').toJS();
+  const result = state.books.get('result').toJS();
+  const isFetching = state.books.get('isFetching');
   return {
     selectedGenre: genre,
     genres: getFilters('category', bookItems, result),
